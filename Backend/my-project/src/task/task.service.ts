@@ -25,4 +25,12 @@ export class TaskService {
     async getAllTasks() {
         return this.prisma.task.findMany();
     }
+
+    async deleteTask(id: string) {
+        const parser = parseInt(id);
+
+        return this.prisma.task.delete({
+            where: { id: parser }
+        });
+    }
 }
