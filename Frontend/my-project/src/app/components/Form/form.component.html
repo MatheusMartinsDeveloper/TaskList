@@ -1,0 +1,66 @@
+<div class="space-y-7 bg-white border border-gray-200 rounded-xl shadow-2xl p-5 w-full">
+    <div>
+        <h2 class="text-black text-xl font-poppins font-medium">Adicione uma nova tarefa</h2>
+    </div>
+    <form (ngSubmit)="onSubmit()" class="flex flex-col gap-5 w-full">
+        <div class="flex flex-col gap-1">
+            <label class="text-gray-700 text-sm font-poppins font-medium" for="title">Titulo *</label>
+            <input
+                class="border-2 border-gray-300 rounded-lg p-2.5 outline-0 focus:border-black" 
+                type="text" 
+                name="title" 
+                id="title"
+                [(ngModel)]="title"
+                required
+            >
+        </div>
+        <div class="flex flex-col gap-1">
+            <label class="text-gray-700 text-sm font-poppins font-medium" for="description">Descrição (opcional)</label>
+            <textarea
+                class="border-2 border-gray-300 rounded-lg p-2.5 outline-0 focus:border-black"
+                name="description" 
+                id="description"
+                [(ngModel)]="description"
+            >
+            </textarea>
+        </div>
+        <div class="flex justify-between gap-3 w-full">
+            <div class="flex flex-col gap-1 w-1/2">
+                <label class="text-gray-700 text-sm font-poppins font-medium" for="dueDate">Prazo Final (opcional)</label>
+                <input
+                    class="border-2 border-gray-300 rounded-lg p-2.5 outline-0 focus:border-black"
+                    type="date" 
+                    name="dueDate" 
+                    id="dueDate"
+                    [(ngModel)]="dueDate"
+                >
+            </div>
+            <div class="flex flex-col gap-1 w-1/2">
+                <label class="text-gray-700 text-sm font-poppins font-medium" for="priority">Prioridade</label>
+                <select 
+                    class="border-2 border-gray-300 rounded-lg p-2.5 outline-0 focus:border-black" 
+                    name="priority" 
+                    id="priority"
+                    [(ngModel)]="priority"
+                >
+                    <option value="Baixa">Baixa</option>
+                    <option value="Media">Média</option>
+                    <option value="Dificil">Dificíl</option>
+                </select>
+            </div>
+        </div>
+        <div class="flex items-center gap-4 w-full">
+            <div class="w-3/4">
+                <button 
+                    (click)="onSubmit()"
+                    [disabled]="!title.trim()"
+                    type="submit" 
+                    class="text-white text-base font-poppins font-medium bg-black rounded-lg p-2.5 w-full cursor-pointer delay-75 transition-all hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed"
+                >Criar Tarefa</button>
+            </div>
+            <div class="w-2/6">
+                <button class="text-black text-base font-poppins font-medium border border-gray-300 rounded-lg p-2.5 w-full cursor-pointer delay-75 transition-all hover:bg-gray-300">Cancelar</button>
+            </div>
+        </div>
+    </form>
+</div>
