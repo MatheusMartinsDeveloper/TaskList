@@ -11,6 +11,13 @@ export interface Task {
     isDone: boolean;
 }
 
+export interface CreateTask {
+    title: string;
+    description?: string;
+    dueDate?: string;
+    priority: string;
+}
+
 @Injectable({
     providedIn: "root"
 })
@@ -21,5 +28,9 @@ export class TaskService {
 
     getAllTasks(): Observable<Task[]> {
         return this.http.get<Task[]>(this.apiUrl + "/getAllTasks");
+    }
+
+    createTask(task: CreateTask): Observable<Task> {
+        return this.http.post<Task>(this.apiUrl + "/createTask", task);
     }
 }
