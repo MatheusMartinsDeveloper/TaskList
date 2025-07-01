@@ -1,26 +1,34 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TaskService } from "./task.service";
+import { VisibilityFormService } from "../../services/visibilityForm.service";
 import { FormsModule } from "@angular/forms";
 import { TextareaModule } from "primeng/textarea";
 import { Task } from "./task.service";
 import { CreateTask } from "./task.service";
+import { NgIf } from "@angular/common";
 
 @Component({
     selector: "app-form",
     standalone: true,
-    imports: [FormsModule, TextareaModule],
+    imports: [FormsModule, TextareaModule, NgIf],
     templateUrl: "./form.component.html",
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
     tasks: Task[] = [];
     title: string = "";
     description: string = "";
     dueDate: string = "";
     priority: string = "Media";
 
-    constructor(private taskService: TaskService) {}
+    isVisible: boolean = false;
+
+    constructor(private taskService: TaskService, private visibilityService: VisibilityFormService) {}
 
     ngOnInit() {
+        this.visibilityService.visibility.subscribe(value => {
+            this.isVisible = value;
+        });
+
         this.taskService.getAllTasks().subscribe({
             next: (tasks) => {
                 this.tasks = tasks;
@@ -30,6 +38,10 @@ export class FormComponent {
                 console.error(err);
             }
         });
+    }
+
+    toggle() {
+        return this.visibilityService.toggle();
     }
 
     onSubmit() {

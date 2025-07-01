@@ -1,4 +1,4 @@
-<div class="space-y-7 bg-white border border-gray-200 rounded-xl shadow-2xl p-5 w-full">
+<div *ngIf="isVisible" class="space-y-7 bg-white border border-gray-200 rounded-xl shadow-2xl p-5 w-full">
     <div>
         <h2 class="text-black text-xl font-poppins font-medium">Adicione uma nova tarefa</h2>
     </div>
@@ -59,7 +59,12 @@
                 >Criar Tarefa</button>
             </div>
             <div class="w-2/6">
-                <button class="text-black text-base font-poppins font-medium border border-gray-300 rounded-lg p-2.5 w-full cursor-pointer delay-75 transition-all hover:bg-gray-300">Cancelar</button>
+                <button 
+                    (click)="toggle()" 
+                    type="button"
+                    class="text-black text-base font-poppins font-medium border border-gray-300 rounded-lg p-2.5 w-full cursor-pointer delay-75 transition-all hover:bg-gray-300">
+                    Cancelar
+                </button>
             </div>
         </div>
     </form>
