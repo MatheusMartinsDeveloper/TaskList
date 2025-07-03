@@ -28,16 +28,6 @@ export class FormComponent implements OnInit {
         this.visibilityService.visibility.subscribe(value => {
             this.isVisible = value;
         });
-
-        this.taskService.getAllTasks().subscribe({
-            next: (tasks) => {
-                this.tasks = tasks;
-                console.log("Tarefas:", tasks);
-            },
-            error: (err) => {
-                console.error(err);
-            }
-        });
     }
 
     toggle() {

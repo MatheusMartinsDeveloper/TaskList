@@ -1,0 +1,29 @@
+<div *ngFor="let t of tasks" class="bg-white border border-gray-200 rounded-xl shadow-2xl p-5 w-full">
+    <div class="flex justify-between">
+        <div class="flex gap-5 w-3/4">
+            <div>
+                <i class="pi pi-circle-off text-gray-300 text-2xl"></i>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h3 class="text-black text-lg font-poppins font-semibold">{{ t.title }}</h3>
+                <p class="text-gray-700 text-sm font-poppins font-normal">{{ t.description }}</p>
+                <div class="flex items-center gap-5">
+                    <span 
+                        [ngClass]="{'text-green-500 bg-green-100 border-green-500': t.priority === 'Baixa',
+                                    'text-yellow-500 bg-yellow-100 border-yellow-500': t.priority === 'Média',
+                                    'text-red-500 bg-red-100 border-red-500': t.priority === 'Dificíl'
+                                    }"
+                        class="text-xs font-poppins font-medium border rounded-xl py-1 px-3">{{ t.priority }}</span>
+                    <div class="flex items-center gap-1.5">
+                        <i class="pi pi-calendar-clock text-gray-500 text-base"></i>
+                        <span class="text-xs text-gray-500 font-poppins font-normal">{{ t.dueDate }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex gap-5">
+            <i class="pi pi-pencil text-gray-500 text-sm cursos-pointer"></i>
+            <i (click)="delete(t.id)" class="pi pi-trash text-red-500 text-sm text-center cursor-pointer"></i>
+        </div>
+    </div>
+</div>
